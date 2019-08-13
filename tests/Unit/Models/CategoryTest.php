@@ -20,11 +20,6 @@ class CategoryTest extends TestCase
         ]);
     }
 
-    public function test_a_category_has_a_parent()
-    {
-
-    }
-
     public function test_a_category_has_many_children()
     {
         $category = factory(Category::class)->create();
@@ -32,7 +27,7 @@ class CategoryTest extends TestCase
         $category->children()->save(
             factory(Category::class)->create()
         );
-        
+
         $this->assertInstanceOf(Category::class, $category->children()->first());
     }
 }
