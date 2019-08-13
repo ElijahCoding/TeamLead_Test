@@ -50,12 +50,14 @@ class CategorySeeder extends Seeder
         if (count($product->categories)) {
             foreach ($product->categories as $category) {
                 if (!in_array($category->id, $category_ids)) {
-                    Category::create([
+                    $category = Category::create([
                         'id' => $category->id,
                         'title' => $category->title,
                         'alias' => $category->alias,
                         'parent_id' => $category->parent
                     ]);
+
+                    $category->products()->attach($product->id);
                 }
             }
         }
