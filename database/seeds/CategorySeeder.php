@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Client;
 use Illuminate\Database\Seeder;
+use App\Models\{Category, Product, Offer};
 
 class CategorySeeder extends Seeder
 {
@@ -21,9 +22,24 @@ class CategorySeeder extends Seeder
     {
         $products = $this->fetchApi();
 
-        foreach ($data as $item) {
-            
+        foreach ($products as $product) {
+
         }
+    }
+
+    protected function createProduct()
+    {
+        
+    }
+
+    protected function createCategory($product)
+    {
+
+    }
+
+    protected function createOffer($product)
+    {
+
     }
 
     protected function fetchApi()
