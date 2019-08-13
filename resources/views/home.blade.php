@@ -23,6 +23,26 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Categories
+                </div>
+
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach ($categories as $category)
+                            <li class="list-group-item">
+                                <a href="{{ route("categories.show", $category->alias) }}">
+                                    {{ $category->title }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

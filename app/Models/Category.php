@@ -11,6 +11,11 @@ class Category extends Model
         'id', 'parent_id', 'title', 'alias'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'alias';
+    }
+
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');
