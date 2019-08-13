@@ -5,11 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">
+                    <form class="form-group" method="GET" action="{{ route('search') }}">
+                        <input class="form-control" value="{{ $query ? $query : '' }}" type="text" name="search" placeholder="Search Product">
+                    </form>
+                </div>
 
                 <div class="card-body">
                     <ul class="list-group">
-                        @foreach ($topProducts as $product)
+                        @foreach ($products as $product)
                             <li class="list-group-item">
                                 {{ $product->title }}
                                 <span class="float-right">{{ $product->sales }} {{ str_plural('sale', $product->sales) }}</span>
