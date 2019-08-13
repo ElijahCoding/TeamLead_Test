@@ -23,18 +23,41 @@ class CategorySeeder extends Seeder
         $products = $this->fetchApi();
 
         foreach ($products as $product) {
-
+            $this->createCategory($product);
+            $this->createProduct($product);
+            // $this->createOffer($product);
         }
     }
 
-    protected function createProduct()
+    protected function createProduct($product)
     {
-        
+        Product::create([
+            'title' => $product->title,
+            'image' => $product->image,
+            'description' => $product->description,
+            'first_invoice' => $product->first_invoice,
+            'url' => $product->url,
+            'price' => $product->price,
+            'amount' => $product->amount
+        ]);
     }
 
     protected function createCategory($product)
     {
+        $category_ids = Category::get()->pluck('id')->toArray();
 
+        if (count($product->categories)) {
+            foreach ($product->categories as $category) {
+                if (!in_array($category->id, $category_ids)) {
+                    Category::create([
+                        'id' => $category->id,
+                        'title' => $category->title,
+                        'alias' => $category->alias,
+                        'parent_id' => $category->parent
+                    ]);
+                }
+            }
+        }
     }
 
     protected function createOffer($product)

@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('image');
             $table->text('description');
-            $table->timestamp('first_invoice');
+            $table->timestamp('first_invoice')->nullable();
             $table->string('url');
             $table->float('price');
             $table->integer('amount');
