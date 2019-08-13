@@ -18,8 +18,8 @@ class CreateOffersTable extends Migration
             $table->bigInteger('product_id')->unsigned()->index();
             $table->float('price');
             $table->integer('amount');
-            $table->integer('sales');
-            $table->string('article');
+            $table->integer('sales')->nullable();
+            $table->string('article')->nullable();
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

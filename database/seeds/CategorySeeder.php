@@ -25,13 +25,14 @@ class CategorySeeder extends Seeder
         foreach ($products as $product) {
             $this->createCategory($product);
             $this->createProduct($product);
-            // $this->createOffer($product);
+            $this->createOffer($product);
         }
     }
 
     protected function createProduct($product)
     {
         Product::create([
+            'id' => $product->id,
             'title' => $product->title,
             'image' => $product->image,
             'description' => $product->description,
@@ -62,7 +63,18 @@ class CategorySeeder extends Seeder
 
     protected function createOffer($product)
     {
-
+        if (count($product->offers)) {
+            foreach ($product->offers as $offer) {
+                Offer::create([
+                    'id' => $offer->id,
+                    'product_id' => $product->id,
+                    'price' => $offer->price,
+                    'amount' => $offer->amount,
+                    'sales' => $offer->sales,
+                    'article' => $offer->article
+                ]);
+            }
+        }
     }
 
     protected function fetchApi()
